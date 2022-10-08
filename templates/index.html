@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
+    <title>Oro Ninja</title>
+</head>
+<body>
+    <div class="container col-10">
+        <div class="form-group m-3 mx-auto">
+            <h3>Tu Oro:</h3>
+            <h4>{{oro}}</h4>
+        </div>
+        <div class="row m-5 gap-4">
+            <div class="card col-2 p-4 mx-auto">
+                <form action="/process_money" method="POST" class="form-group">
+                    <h4 class="text-center">Granja</h4>
+                    <h6 class="text-center">(gana de 10 a 20 oros)</h6>
+                    <input type="hidden" name="accion" value="granja">
+                    <input type="submit" value="Encuentra Oro!">
+                </form>
+            </div>
+            <div class="card col-2 p-4 mx-auto">
+                <form action="/process_money" method="POST" class="form-group">
+                    <h4 class="text-center">Cueva</h4>
+                    <h6 class="text-center">(gana de 5 a 10 oros)</h6>
+                    <input type="hidden" name="accion" value="cueva">
+                    <input type="submit" value="Encuentra Oro!">
+                </form>
+            </div>
+            <div class="card col-2 p-4 mx-auto">
+                <form action="/process_money" method="POST" class="form-group">
+                    <h4 class="text-center">Casa</h4>
+                    <h6 class="text-center">(gana de 2 a 5 oros)</h6>
+                    <input type="hidden" name="accion" value="casa">
+                    <input type="submit" value="Encuentra Oro!">
+                </form>
+            </div>
+            <div class="card col-2 p-4 mx-auto">
+                <form action="/process_money" method="POST" class="form-group">
+                    <h4 class="text-center">Casino</h4>
+                    <h6 class="text-center">(gana/te quita de 0 a 50 oros)</h6>
+                    <input type="hidden" name="accion" value="casino">
+                    <input type="submit" value="Encuentra Oro!">
+                </form>
+            </div>
+        </div>
+        <div class="fila">
+            <h5>Actividades:</h5>
+        </div>
+        <div class="fila">
+            <div class="actividades">
+            {% if actividades %}
+                <ul>
+                    {% for class, actividad in actividades %}
+                    <li class={{class}}>{{actividad}}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            </div>        
+        </div>
+        <a class="btn btn-info m-3" href="/destroy_session">Volver a Jugar</a>
+    </div>
+</body>
+</html>
